@@ -1,7 +1,8 @@
-import EventPractice from './EventPractice ';
+import ValidationSample from './Chapter5/ValidationSample';
+// import Practice from './practice';
 
 const App = () => {
-  return <EventPractice />;
+  return <ValidationSample />;
 };
 
 export default App;
