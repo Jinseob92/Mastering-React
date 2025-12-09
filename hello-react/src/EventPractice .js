@@ -1,14 +1,24 @@
-import { Component, useState } from 'react';
+import { useState } from 'react';
 
 const EventPractice = () => {
-  const [username, setUsername] = useState('');
-  const [message, setMessage] = useState('');
-  const onChangeUsername = (e) => setUsername(e.target.value);
-  const onChangeMessage = (e) => setMessage(e.target.value);
+  const [form, setForm] = useState({
+    username: '',
+    message: '',
+  });
+  const [username, message] = form;
+  const onChange = (e) => {
+    const nextForm = {
+      ...form,
+      [e.target.name]: e.target.value,
+    };
+    setForm(nextForm);
+  };
   const onClick = () => {
     alert(username + ': ' + message);
-    setUsername('');
-    setMessage('');
+    setForm({
+      username: '',
+      message: '',
+    });
   };
   const onKeyPress = (e) => {
     if (e.key === 'enter') {
@@ -23,7 +33,7 @@ const EventPractice = () => {
         name="username"
         placeholder="사용자명"
         value={username}
-        onChange={onChangeUsername}
+        onChange={onChange}
       />
 
       <input
@@ -31,7 +41,7 @@ const EventPractice = () => {
         name="message"
         placeholder="아무거나 입력해 보세요."
         value={message}
-        onChange={onChangeMessage}
+        onChange={onChange}
         onKeyDown={(e) => onKeyPress(e)}
       />
       <button onClick={onClick}>확인</button>
